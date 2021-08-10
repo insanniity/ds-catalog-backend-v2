@@ -11,7 +11,7 @@ import java.time.Instant;
 
 @MappedSuperclass
 @Getter
-public class Auditory{
+public abstract class Auditory{
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;

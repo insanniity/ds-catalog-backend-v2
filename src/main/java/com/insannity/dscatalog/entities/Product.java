@@ -3,6 +3,7 @@ package com.insannity.dscatalog.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_product")
-public class Product extends Auditory{
+public class Product extends Auditory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +30,6 @@ public class Product extends Auditory{
     @Setter(value=AccessLevel.PROTECTED)
     @ManyToMany
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    Set<Category> categories = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
 }
