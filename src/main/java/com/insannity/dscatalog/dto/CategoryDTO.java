@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Data
@@ -13,6 +14,7 @@ import java.io.Serializable;
 public class CategoryDTO implements Serializable {
 
     private Long id;
+    @NotBlank(message = "Campo obrigatório")
     private String name;
 
     public CategoryDTO(Category entity){
