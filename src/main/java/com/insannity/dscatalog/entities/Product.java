@@ -9,27 +9,25 @@ import java.util.Set;
 
 @Entity
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_product")
+@EqualsAndHashCode(exclude = "categories")
 public class Product extends Auditory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
     private String name;
-    @NonNull
     @Column(columnDefinition = "TEXT")
     private String description;
-    @NonNull
     private Double price;
-    @NonNull
     private String imgUrl;
+
 
     @Setter(value=AccessLevel.PROTECTED)
     @ManyToMany
-    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name="category_id"))
     private Set<Category> categories = new HashSet<>();
 
 }

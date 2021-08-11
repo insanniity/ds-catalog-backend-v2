@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,23 +35,23 @@ public class ProductService {
     @Transactional(readOnly = true)
     public ProductDTO findById (Long id){
         Optional<Product> obj = repository.findById(id);
-        Product entity = obj.orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        Product entity = obj.orElseThrow(() -> new NotFoundException("Produto não encontrado"));
         return new ProductDTO(entity, entity.getCategories());
     }
 
     @Transactional
     public ProductDTO insertNew(ProductDTO dto) {
         Product entity = new Product();
-        copyDtoToEntity(entity, dto);
+        copyDtoToEntity(dto, entity);
         entity = repository.save(entity);
-        return new ProductDTO(entity);
+        return new ProductDTO(entity, entity.getCategories());
     }
 
     @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
         try {
             Product entity = repository.getById(id);
-            copyDtoToEntity(entity, dto);
+            copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
             return new ProductDTO(entity);
         } catch (EntityNotFoundException e){
@@ -70,7 +69,7 @@ public class ProductService {
         }
     }
 
-    private void copyDtoToEntity (Product entity, ProductDTO dto){
+    private void copyDtoToEntity (ProductDTO dto,Product entity){
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());

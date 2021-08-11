@@ -2,10 +2,7 @@ package com.insannity.dscatalog.dto;
 
 import com.insannity.dscatalog.entities.Category;
 import com.insannity.dscatalog.entities.Product;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,21 +10,18 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProductDTO implements Serializable {
 
-    @NonNull
+
     private Long id;
-    @NonNull
     private String name;
-    @NonNull
     private String description;
-    @NonNull
     private Double price;
-    @NonNull
     private String imgUrl;
 
+    @Setter(value=AccessLevel.PROTECTED)
     private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO(Product entity) {
@@ -38,9 +32,9 @@ public class ProductDTO implements Serializable {
         this.imgUrl = entity.getImgUrl();
     }
 
-    public ProductDTO(Product entity, Set<Category> categories){
+    public ProductDTO(Product entity, Set<Category> cat){
         this(entity);
-        categories.forEach(x -> this.categories.add(new CategoryDTO(x)));
+        cat.forEach(x -> categories.add(new CategoryDTO(x)));
     }
 
 }

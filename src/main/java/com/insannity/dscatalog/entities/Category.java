@@ -1,6 +1,8 @@
 package com.insannity.dscatalog.entities;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_category")
+@EqualsAndHashCode(exclude = "products")
 public class Category extends Auditory implements Serializable{
 
     @Id
@@ -19,7 +22,7 @@ public class Category extends Auditory implements Serializable{
     private Long id;
     private String name;
 
-    @Setter(value= AccessLevel.PROTECTED)
+    @Setter(value = AccessLevel.PROTECTED)
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 

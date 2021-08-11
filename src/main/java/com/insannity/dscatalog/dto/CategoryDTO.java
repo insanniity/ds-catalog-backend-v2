@@ -16,8 +16,8 @@ public class CategoryDTO implements Serializable {
     private String name;
 
     public CategoryDTO(Category entity){
-        id = entity.getId();
-        name = entity.getName();
+        this.id = entity.getId();
+        this.name = entity.getName();
     }
 
 
