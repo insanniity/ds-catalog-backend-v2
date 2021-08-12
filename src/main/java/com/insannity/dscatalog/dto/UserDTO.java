@@ -1,6 +1,7 @@
 package com.insannity.dscatalog.dto;
 
 import com.insannity.dscatalog.entities.User;
+import com.insannity.dscatalog.services.validation.UserUpdateValid;
 import lombok.*;
 
 import javax.validation.constraints.Email;

@@ -2,6 +2,7 @@ package com.insannity.dscatalog.controllers;
 
 import com.insannity.dscatalog.dto.UserDTO;
 import com.insannity.dscatalog.dto.UserInsertDTO;
+import com.insannity.dscatalog.dto.UserUpdateDTO;
 import com.insannity.dscatalog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,14 +38,13 @@ public class UserController {
     public ResponseEntity<UserDTO> insertNew(@Valid @RequestBody UserInsertDTO dto){
         UserDTO newDto = service.insertNew(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newDto.getId()).toUri();
-        return ResponseEntity.status(HttpStatus.CREATED).body(newDto);
+        return ResponseEntity.created(uri).body(newDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id,@Valid @RequestBody UserDTO dto){
-        dto = service.update(id ,dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    public ResponseEntity<UserDTO> update(@PathVariable Long id,@Valid @RequestBody UserUpdateDTO dto){
+        UserDTO newDto = service.update(id ,dto);
+        return ResponseEntity.status(HttpStatus.OK).body(newDto);
     }
 
     @DeleteMapping("/{id}")
