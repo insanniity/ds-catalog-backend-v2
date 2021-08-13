@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @UserUpdateValid
 public class UserUpdateDTO extends UserDTO{
 
