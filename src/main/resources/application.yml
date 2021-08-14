@@ -1,9 +1,17 @@
 spring:
   profiles:
-    active: ${PROFILE_TYPE:test}
+    active: ${APP_PROFILE:test}
   jpa:
     open-in-view: false
 server:
   port: 8080
   servlet:
     context-path: /api/v1
+security:
+  oauth2:
+    client:
+      client-id: ${CLIENT_ID:dscatalog}
+      client-secret: ${CLIENTE_SECRET:dscatalog123}
+jwt:
+  secret: ${JWT_SCRET:MY-JWT-SECRET}
+  duration: ${JWT_DURATION:86400}
