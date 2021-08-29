@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -72,7 +73,7 @@ public class ProductService {
     private void copyDtoToEntity (ProductDTO dto,Product entity){
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
-        entity.setPrice(dto.getPrice());
+        entity.setPrice(new BigDecimal(dto.getPrice()));
         entity.setImgUrl(dto.getImgUrl());
         entity.getCategories().clear();
         dto.getCategories().forEach(x -> {

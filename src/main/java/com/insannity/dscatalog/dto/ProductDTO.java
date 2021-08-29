@@ -26,7 +26,7 @@ public class ProductDTO implements Serializable {
     @NotBlank(message = "Campo obrigatório")
     private String description;
     @Positive(message = "O valor deve ser positivo")
-    private Double price;
+    private String price;
     private String imgUrl;
 
     @Setter(value=AccessLevel.PROTECTED)
@@ -36,7 +36,7 @@ public class ProductDTO implements Serializable {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
-        this.price = entity.getPrice();
+        this.price = entity.getPrice().toString();
         this.imgUrl = entity.getImgUrl();
     }
 

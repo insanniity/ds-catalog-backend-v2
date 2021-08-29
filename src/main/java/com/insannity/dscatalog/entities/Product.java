@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class Product extends Auditory implements Serializable {
     private String name;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private Double price;
+    private BigDecimal price;
     private String imgUrl;
 
 
