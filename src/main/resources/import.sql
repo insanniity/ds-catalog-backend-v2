@@ -58,9 +58,8 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 INSERT INTO tb_user (name, email, password, created_at) VALUES ('Alex Brown', 'alex@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', NOW());
 INSERT INTO tb_user (name, email, password, created_at) VALUES ('MariaGreen', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', NOW());
 
-INSERT INTO tb_role (authority, created_at) VALUES ('ROLE_OPERATOR', NOW());
 INSERT INTO tb_role (authority, created_at) VALUES ('ROLE_ADMIN', NOW());
+INSERT INTO tb_role (authority, created_at) VALUES ('ROLE_OPERATOR', NOW());
 
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);

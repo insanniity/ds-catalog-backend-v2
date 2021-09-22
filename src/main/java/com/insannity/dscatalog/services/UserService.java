@@ -2,10 +2,8 @@ package com.insannity.dscatalog.services;
 
 import com.insannity.dscatalog.dto.UserDTO;
 import com.insannity.dscatalog.dto.UserInsertDTO;
-import com.insannity.dscatalog.entities.Category;
 import com.insannity.dscatalog.entities.Role;
 import com.insannity.dscatalog.entities.User;
-import com.insannity.dscatalog.repositories.CategoryRepository;
 import com.insannity.dscatalog.repositories.RoleRepository;
 import com.insannity.dscatalog.repositories.UserRepository;
 import com.insannity.dscatalog.services.exceptions.DatabaseException;
@@ -56,7 +54,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public UserDTO insertNew(UserInsertDTO dto) {
+    public UserDTO insertNew(UserInsertDTO dto){
         User entity = new User();
         copyDtoToEntity(entity, dto);
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
